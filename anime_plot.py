@@ -34,13 +34,18 @@ if __name__ == "__main__":
 
     anime_watch_time_sum = [float(i) for i in anime_watch_time_sum]
 
-    print(anime_list[:-1])
-    print(anime_watch_time_sum)
+    anime_watch_time_hours = [i / 60 for i in anime_watch_time_sum]
 
-    plt.bar(anime_list[:-1], anime_watch_time_sum[:-1], color='blue')
-    plt.xlabel('Anime type')
-    plt.ylabel('Watch time')
-    plt.title('The most views Anime type')
+    print(anime_list[:-1])
+    print(anime_watch_time_sum[:-1])
+
+    plt.bar(anime_list[:-1], anime_watch_time_hours[:-1], color="green")
+    plt.xlabel('Anime type', fontsize=12)
+    plt.ylabel('Watch time (hours)', fontsize=12)
+    plt.title('The most viewed Anime type', fontsize=14)
+
+    for i, value in enumerate(anime_watch_time_hours):
+        plt.text(i, value + 0.1, f'{value:.1f} h', ha='center', va='bottom', fontsize=10)
 
     plt.show()
 
