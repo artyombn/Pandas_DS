@@ -1,16 +1,34 @@
+import os
 import pandas as pd
 import numpy as np
 
+import kagglehub
+
 from pathlib import Path
 from datetime import timedelta
+from kagglehub import KaggleDatasetAdapter
 
 
 BASE_DIR = Path(__file__).resolve().parent
 ANIME_DIR = BASE_DIR / "anime-recommendations-database"
 
+# Load the latest version
+anime = kagglehub.load_dataset(
+    KaggleDatasetAdapter.PANDAS,
+    "CooperUnion/anime-recommendations-database",
+    "anime.csv",
+)
 
-anime = pd.read_csv(ANIME_DIR / "anime.csv")
-rating = pd.read_csv(ANIME_DIR / "rating.csv")
+# Load the latest version
+rating = kagglehub.load_dataset(
+    KaggleDatasetAdapter.PANDAS,
+    "CooperUnion/anime-recommendations-database",
+    "rating.csv",
+)
+
+
+# anime = pd.read_csv(ANIME_DIR / "anime.csv")
+# rating = pd.read_csv(ANIME_DIR / "rating.csv")
 
 anime_modified = anime.set_index('name')
 
